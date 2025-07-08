@@ -55,13 +55,13 @@
 ## 🌐 Connect with Me
 
 <p align="center">
-  <a href="mailto:yourmail@example.com">
-    <img src="https://img.shields.io/badge/email-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
+  <a href="https://www.instagram.com/socratarvis/">
+    <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"/>
   </a>
-  <a href="https://linkedin.com/in/yourlinkedin">
+  <a href="https://www.linkedin.com/in/serhatbekis/">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
   </a>
-  <a href="https://yourwebsite.com">
+  <a href="https://socratarvis.com.tr">
     <img src="https://img.shields.io/badge/Portfolio-121212?style=for-the-badge&logo=firefox-browser&logoColor=white"/>
   </a>
 </p>
