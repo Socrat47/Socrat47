@@ -35,6 +35,9 @@ MONO = font(19)
 SMALL = font(17)
 BOLD = font(21, bold=True)
 ASCII = font(20, bold=True)
+STEP_MS = 300
+STEPS_PER_COMMAND = 10
+COMMANDS = ("fastfetch --dev", "whoami", "cat philosophy.txt", "./run --mode=current")
 
 BG = "#0b0f18"
 PANEL = "#101622"
@@ -79,7 +82,65 @@ def black_hole(draw: ImageDraw.ImageDraw, frame: int) -> None:
                 draw.text((x0 + gx * cw, y0 + gy * ch), glyph, font=ASCII, fill=color)
 
 
+def command_output(draw: ImageDraw.ImageDraw, command_index: int) -> None:
+    x, y = 550, 141
+    titles = ("socrat47@dev", "whoami", "philosophy.txt", "mode: current")
+    draw.text((x, y), titles[command_index], font=BOLD, fill=TEAL)
+    draw.line((x, y + 34, 1015, y + 34), fill=EDGE, width=1)
+
+    if command_index == 0:
+        rows = (
+            ("Role", "Full stack developer"),
+            ("OS", "Backend-first, frontend-fluent"),
+            ("Focus", "System design & architecture"),
+            ("AI/CV", "Practical integration"),
+            ("Status", "Always learning"),
+        )
+        for n, (label, value) in enumerate(rows):
+            row_y = y + 57 + n * 39
+            draw.text((x, row_y), f"{label}:", font=SMALL, fill=AMBER)
+            draw.text((x + 112, row_y), value, font=SMALL, fill=TEXT)
+        return
+
+    output = (
+        (),
+        (
+            "> booting socrat47_profile.sh...",
+            "> backend brain...          [OK]",
+            "> system design...          [OK]",
+            "> AI curiosity...           [OK]",
+            "",
+            "Full stack developer.",
+            'Sistemleri "neden çalışıyor" diye',
+            "tasarlarım.",
+        ),
+        (
+            "Kod yazmak kolay kısmı. Zor olan;",
+            "doğru veri modelini seçmek, sistemi",
+            "büyümeye hazır tasarlamak ve beş yıl",
+            "sonra okunabilir bırakmak.",
+            "",
+            "AI beni değiştirmedi, hızlandırdı.",
+            "Sistemin neden böyle davrandığını",
+            "ben anlıyorum — model değil.",
+        ),
+        (
+            "[*] Backend sistemlerini",
+            "    sağlamlaştırıyor",
+            "[*] AI/CV entegrasyonlarını",
+            "    mimariye oturtuyor",
+            "[*] Çalışan kod ile doğru kodun",
+            "    farkını kovalıyor",
+        ),
+    )[command_index]
+    for n, line in enumerate(output):
+        color = AMBER if line.startswith((">", "[*]")) else TEXT
+        draw.text((x, y + 55 + n * 29), line, font=SMALL, fill=color)
+
+
 def frame_image(index: int) -> Image.Image:
+    command_index, step = divmod(index, STEPS_PER_COMMAND)
+    command = COMMANDS[command_index]
     image = Image.new("RGB", SIZE, BG)
     draw = ImageDraw.Draw(image)
     draw.rounded_rectangle((12, 12, 1048, 472), radius=13, fill=PANEL, outline=EDGE, width=2)
@@ -87,46 +148,32 @@ def frame_image(index: int) -> Image.Image:
     draw.rectangle((13, 43, 1047, 54), fill=TOP)
     for x, color in ((35, "#ff6b6b"), (58, "#f5bd4f"), (81, "#4ade80")):
         draw.ellipse((x - 6, 28, x + 6, 40), fill=color)
-    draw.text((337, 23), "socrat47@dev: ~ / fastfetch", font=SMALL, fill=MUTED)
+    draw.text((337, 23), "socrat47@dev: ~ / session", font=SMALL, fill=MUTED)
 
     draw.text((35, 69), "~$", font=MONO, fill=TEAL)
-    draw.text((73, 69), "fastfetch --dev", font=MONO, fill=TEXT)
+    typed = command[: math.ceil(len(command) * min(step + 1, 3) / 3)]
+    draw.text((73, 69), typed, font=MONO, fill=TEXT)
+    if step < 3 or step % 2 == 0:
+        cursor_x = 73 + draw.textlength(typed, font=MONO) + 3
+        draw.rectangle((cursor_x, 73, cursor_x + 10, 93), fill=TEAL)
     draw.line((35, 111, 1024, 111), fill=EDGE, width=1)
     black_hole(draw, index)
-
-    x, y = 550, 141
-    draw.text((x, y), "socrat47@dev", font=BOLD, fill=TEAL)
-    draw.line((x, y + 34, 1015, y + 34), fill=EDGE, width=1)
-    rows = [
-        ("Role", "Full stack developer"),
-        ("OS", "Backend-first, frontend-fluent"),
-        ("Focus", "System design & architecture"),
-        ("Data", "PostgreSQL / MongoDB"),
-        ("", "MySQL / MariaDB"),
-        ("AI/CV", "Practical integration"),
-        ("Status", "Always learning"),
-    ]
-    for n, (label, value) in enumerate(rows):
-        row_y = y + 53 + n * 32
-        if label:
-            draw.text((x, row_y), f"{label}:", font=SMALL, fill=AMBER)
-        draw.text((x + 112, row_y), value, font=SMALL, fill=TEXT)
+    if step >= 3:
+        command_output(draw, command_index)
 
     draw.line((35, 434, 1024, 434), fill=EDGE, width=1)
     draw.text((35, 445), "~$", font=SMALL, fill=TEAL)
-    if index < 8:
-        draw.rectangle((73, 449, 84, 466), fill=TEAL)
-    draw.text((909, 445), "[ running ]", font=SMALL, fill=MUTED)
+    draw.text((899, 445), f"[ {command_index + 1:02d} / 04 ]", font=SMALL, fill=MUTED)
     return image
 
 
 def main() -> None:
-    frames = [frame_image(i).quantize(colors=96) for i in range(16)]
+    frames = [frame_image(i).quantize(colors=96) for i in range(len(COMMANDS) * STEPS_PER_COMMAND)]
     frames[0].save(
         OUT,
         save_all=True,
         append_images=frames[1:],
-        duration=190,
+        duration=STEP_MS,
         loop=0,
         optimize=True,
         disposal=2,
