@@ -4,7 +4,7 @@
 
 **Full stack developer · Backend-first · Merakla inşa ediyor**
 
-<img src="./terminal.gif" alt="Animasyonlu Linux terminali: solda ASCII karadelik, sağda sırasıyla fastfetch --dev, whoami, cat philosophy.txt ve ./run --mode=current komutlarının çıktıları." width="1060" />
+<img src="./terminal-session.gif" alt="Animasyonlu Linux terminali: solda ASCII karadelik, sağda sırasıyla fastfetch --dev, whoami, cat philosophy.txt ve ./run --mode=current komutlarının çıktıları." width="1060" />
 
 </div>
 

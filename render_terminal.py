@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 ROOT = Path(__file__).resolve().parent
-OUT = ROOT / "terminal.gif"
+OUT = ROOT / "terminal-session.gif"
 SIZE = (1060, 484)
 FONT_PATHS = (
     Path("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"),
