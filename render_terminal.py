@@ -35,8 +35,8 @@ MONO = font(19)
 SMALL = font(17)
 BOLD = font(21, bold=True)
 ASCII = font(20, bold=True)
-STEP_MS = 300
-STEPS_PER_COMMAND = 10
+FRAME_DURATIONS = (150, 150, 150, 150, 800, 800, 800)
+STEPS_PER_COMMAND = len(FRAME_DURATIONS)
 COMMANDS = ("fastfetch --dev", "whoami", "cat philosophy.txt", "./run --mode=current")
 
 BG = "#0b0f18"
@@ -151,14 +151,14 @@ def frame_image(index: int) -> Image.Image:
     draw.text((337, 23), "socrat47@dev: ~ / session", font=SMALL, fill=MUTED)
 
     draw.text((35, 69), "~$", font=MONO, fill=TEAL)
-    typed = command[: math.ceil(len(command) * min(step + 1, 3) / 3)]
+    typed = command[: math.ceil(len(command) * min(step + 1, 4) / 4)]
     draw.text((73, 69), typed, font=MONO, fill=TEXT)
-    if step < 3 or step % 2 == 0:
+    if step < 4 or step % 2 == 0:
         cursor_x = 73 + draw.textlength(typed, font=MONO) + 3
         draw.rectangle((cursor_x, 73, cursor_x + 10, 93), fill=TEAL)
     draw.line((35, 111, 1024, 111), fill=EDGE, width=1)
     black_hole(draw, index)
-    if step >= 3:
+    if step >= 4:
         command_output(draw, command_index)
 
     draw.line((35, 434, 1024, 434), fill=EDGE, width=1)
@@ -173,7 +173,7 @@ def main() -> None:
         OUT,
         save_all=True,
         append_images=frames[1:],
-        duration=STEP_MS,
+        duration=list(FRAME_DURATIONS) * len(COMMANDS),
         loop=0,
         optimize=True,
         disposal=2,
