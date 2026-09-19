@@ -2,9 +2,9 @@
 
 # socrat47@dev:~
 
-**Full stack developer · Backend-first · Merakla inşa ediyor**
+**Full stack developer · Backend-first · Building with curiosity**
 
-<img src="./terminal.gif" alt="Animasyonlu Linux terminali: solda ASCII karadelik, sağda sırasıyla fastfetch --dev, whoami, cat philosophy.txt ve ./run --mode=current komutlarının çıktıları." width="1060" />
+<img src="./terminal-session.gif" alt="Animated Linux terminal: an ASCII black hole on the left and the outputs of fastfetch --dev, whoami, cat philosophy.txt, and ./run --mode=current on the right." width="1060" />
 
 </div>
 
@@ -12,10 +12,10 @@
 
 ```text
 OS          Backend-first, frontend-fluent
-Focus       Sistem tasarımı ve ölçeklenebilir mimari
-Superpower  Karmaşık problemi sade bir API'ye indirgemek
-AI Status   Araç olarak kullanıyor, hype olarak değil
-Uptime      Öğrenmeye devam ediyor, durmuyor
+Focus       System design and scalable architecture
+Superpower  Turning complex problems into simple APIs
+AI Status   Using AI as a tool, not as hype
+Uptime      Always learning, never stopping
 ```
 
 ### `~$ whoami`
@@ -26,27 +26,27 @@ Uptime      Öğrenmeye devam ediyor, durmuyor
 > loading system design instincts... [OK]
 > loading AI curiosity module...     [OK]
 
-Full stack developer. Sistemleri "çalışsın" diye değil,
-"neden böyle çalışıyor" diye tasarlarım.
+Full stack developer. I design systems not just to "make them work,"
+but to understand why they work.
 ```
 
 ### `~$ cat philosophy.txt`
 
 ```text
-Kod yazmak kolay kısmı. Zor olan; doğru veri modelini seçmek,
-sistemi büyümeye hazır tasarlamak ve beş yıl sonra başka birinin
-bu kodu okuyup küfür etmemesini sağlamak.
+Writing code is the easy part. The hard part is choosing the right
+data model, designing a system that can grow, and making sure someone
+reading the code five years later doesn't curse its author.
 
-AI beni değiştirmedi, hızlandırdı. Hâlâ sistemin neden
-o şekilde davrandığını ben anlıyorum — model değil.
+AI didn't replace me; it made me faster. I still understand why
+the system behaves the way it does — the model doesn't.
 ```
 
 ### `~$ ./run --mode=current`
 
 ```text
-[*] Backend sistemleri sağlamlaştırıyor
-[*] AI/CV entegrasyonlarını mimariye oturtuyor
-[*] "Çalışan kod" ile "doğru kod" arasındaki farkı kovalıyor
+[*] Strengthening backend systems
+[*] Fitting AI/CV integrations into the architecture
+[*] Chasing the difference between "working code" and "right code"
 ```
 
-<sub>Terminal animasyonunun kaynak kodu: <a href="./render_terminal.py">render_terminal.py</a></sub>
+<sub>Terminal animation source: <a href="./render_terminal.py">render_terminal.py</a></sub>

@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 ROOT = Path(__file__).resolve().parent
-OUT = ROOT / "terminal.gif"
+OUT = ROOT / "terminal-session.gif"
 SIZE = (1060, 484)
 FONT_PATHS = (
     Path("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"),
@@ -35,7 +35,7 @@ MONO = font(19)
 SMALL = font(17)
 BOLD = font(21, bold=True)
 ASCII = font(20, bold=True)
-FRAME_DURATIONS = (150, 150, 150, 150, 800, 800, 800)
+FRAME_DURATIONS = (150, 150, 150, 150, 1400, 1500, 1500)
 STEPS_PER_COMMAND = len(FRAME_DURATIONS)
 COMMANDS = ("fastfetch --dev", "whoami", "cat philosophy.txt", "./run --mode=current")
 
@@ -111,26 +111,25 @@ def command_output(draw: ImageDraw.ImageDraw, command_index: int) -> None:
             "> AI curiosity...           [OK]",
             "",
             "Full stack developer.",
-            'Sistemleri "neden çalışıyor" diye',
-            "tasarlarım.",
+            "I design systems to understand",
+            "why they work, not just to run.",
         ),
         (
-            "Kod yazmak kolay kısmı. Zor olan;",
-            "doğru veri modelini seçmek, sistemi",
-            "büyümeye hazır tasarlamak ve beş yıl",
-            "sonra okunabilir bırakmak.",
+            "Writing code is the easy part.",
+            "The hard part: good data models,",
+            "systems built to grow, and code",
+            "people can read years later.",
             "",
-            "AI beni değiştirmedi, hızlandırdı.",
-            "Sistemin neden böyle davrandığını",
-            "ben anlıyorum — model değil.",
+            "AI didn't replace me. It made me faster.",
+            "I still know why the system behaves",
+            "as it does — the model doesn't.",
         ),
         (
-            "[*] Backend sistemlerini",
-            "    sağlamlaştırıyor",
-            "[*] AI/CV entegrasyonlarını",
-            "    mimariye oturtuyor",
-            "[*] Çalışan kod ile doğru kodun",
-            "    farkını kovalıyor",
+            "[*] Strengthening backend systems",
+            "[*] Fitting AI/CV into the",
+            "    architecture",
+            "[*] Chasing the difference between",
+            "    working and well-designed code",
         ),
     )[command_index]
     for n, line in enumerate(output):
